@@ -1,26 +1,338 @@
-Ratecard/
-├── index.html
-├── css/
-│   ├── style.css
-│   ├── effects.css
-├── js/
-│   ├── config.js
-│   ├── state.js
-│   ├── app-controller.js
-│   ├── animation-engine.js
-│   ├── interaction-engine.js
-│   ├── scene-manager.js
-│   ├── script.js
-│   ├── galaxy-background.js
-│   ├── three-background.js
-│   ├── performance.js
-│   ├── preloader.js
-│   ├── audio-system.js
-│   ├── device-tier-system.js
-├── music/
-│   └── song1.mp3
-├── assets/
-│   ├── images/
-│   │   └── (foto kamu)
-│   └── music-cover/
-│       └── song1.jpeg
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="A love story written in starlight — made only for you." />
+  <meta name="theme-color" content="#030008" />
+  <title>Nabila. — you are my favorite universe</title>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/effects.css" />
+
+  <style>
+    html { background: #030008; }
+  </style>
+</head>
+<body>
+
+  <!-- ─── CURSOR ──────────────────────────────────────────── -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ─── FIXED LAYERS ────────────────────────────────────── -->
+  <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
+  <canvas id="three-canvas" aria-hidden="true"></canvas>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ─── PRELOADER ───────────────────────────────────────── -->
+  <div id="preloader" role="progressbar" aria-label="Loading experience">
+    <div class="preloader__bg"></div>
+    <div class="preloader__rings">
+      <div class="preloader__ring-outer"></div>
+      <div class="preloader__ring-mid"></div>
+    </div>
+
+    <div class="preloader__content">
+      <span class="preloader__heart">♡</span>
+      <div class="preloader__ring" aria-hidden="true"></div>
+      <p class="preloader__quote"></p>
+      <div>
+        <div class="preloader__bar">
+          <div class="preloader__bar-fill"></div>
+        </div>
+        <span class="preloader__percent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── NAVIGATION ──────────────────────────────────────── -->
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#hero" class="nav__logo">Nabila.</a>
+    <ul class="nav__links" role="list">
+      <li><a href="#timeline" class="hover-line">Story</a></li>
+      <li><a href="#gallery" class="hover-line">Gallery</a></li>
+      <li><a href="#love-letter" class="hover-line">Letter</a></li>
+      <li><a href="#finale" class="hover-line">Ending</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── NAV DOTS ─────────────────────────────────────────── -->
+  <nav class="nav-dots" aria-label="Section navigation"></nav>
+
+  <!-- ════════════════════════════════════════════════════════
+       MAIN EXPERIENCE
+       ════════════════════════════════════════════════════════ -->
+  <main>
+
+    <!-- ─── HERO ──────────────────────────────────────────── -->
+    <section class="hero" id="hero" data-scene="hero">
+      <div class="hero__particles" aria-hidden="true"></div>
+
+      <div class="hero__inner">
+        <div class="hero__badge">
+          <span>A love story, rendered in starlight</span>
+        </div>
+
+        <h1 class="hero__headline t-hero glow-text">
+          <span class="line">Happy Birthday</span>
+          <span class="line"><em>my favorite</em> universe.</span>
+        </h1>
+
+        <p class="hero__sub">
+          Every star was placed to eventually lead me here.
+          Every wrong path — a quiet rehearsal for finding you.
+        </p>
+
+        <div class="hero__cta">
+          <a href="#timeline" class="btn btn-primary" data-magnetic>
+            Enter the Story
+          </a>
+          <a href="#love-letter" class="btn btn-ghost" data-magnetic>
+            Read the Letter
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span>scroll</span>
+        <div class="hero__scroll-arrow"></div>
+      </div>
+
+      <div class="orb-decoration orb-violet" style="width:600px;height:600px;top:-20%;right:-15%;opacity:0.5;"></div>
+      <div class="orb-decoration orb-pink" style="width:400px;height:400px;bottom:-10%;left:-8%;opacity:0.4;"></div>
+    </section>
+
+    <!-- ─── TIMELINE ──────────────────────────────────────── -->
+    <section class="timeline" id="timeline" data-scene="timeline">
+      <div class="section-number" aria-hidden="true">01</div>
+      <div class="container">
+        <header class="section-header">
+          <p class="t-label section-header__eyebrow" data-reveal="fade-up">
+            How it all began
+          </p>
+          <div class="section-divider"></div>
+          <h2 class="t-section-title section-header__title" data-reveal="fade-up">
+            The Story<br /><em style="font-style:italic;color:var(--clr-pink-soft);">So Far</em>
+          </h2>
+          <p class="section-header__desc t-body" data-reveal="fade-up">
+            Some love stories don't have a clean beginning.
+            Ours started as a quiet coincidence — and slowly became the most deliberate thing I have ever chosen.
+          </p>
+        </header>
+
+        <div class="timeline__inner">
+          <div class="timeline__glow-line" aria-hidden="true"></div>
+          <div class="timeline__items"></div>
+        </div>
+      </div>
+
+      <div class="orb-decoration orb-blue" style="width:500px;height:500px;top:30%;left:-10%;opacity:0.3;"></div>
+    </section>
+
+    <!-- ─── GALLERY ───────────────────────────────────────── -->
+    <section class="gallery" id="gallery" data-scene="gallery">
+      <div class="section-number" aria-hidden="true">02</div>
+      <div class="container">
+        <header class="section-header">
+          <p class="t-label section-header__eyebrow" data-reveal="fade-up">
+            The whole universe, in one person
+          </p>
+          <div class="section-divider"></div>
+          <h2 class="t-section-title section-header__title" data-reveal="fade-up">
+            Every frame<br /><em style="font-style:italic;color:var(--clr-violet-soft);">is yours</em>
+          </h2>
+          <p class="section-header__desc t-body" data-reveal="fade-up">
+            I keep every single one. The quiet ones. The unplanned ones.
+            Especially the ones where you didn't know I was already in awe of you.
+          </p>
+        </header>
+
+        <div class="gallery__grid" role="list">
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img1.jpeg" alt="foto 1" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">Glowing without even trying — and that's the most breathtaking thing about you.</span>
+                <span class="gallery__caption-tag">#effortless</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img2.jpeg" alt="foto 2" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">The kind of beauty that doesn't ask for permission to take your breath away.</span>
+                <span class="gallery__caption-tag">#undeniable</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img3.jpeg" alt="foto 3" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">That laughter — the one sound that makes every quiet room feel alive.</span>
+                <span class="gallery__caption-tag">#everything</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img4.jpeg" alt="foto 4" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">I have memorized the way you carry yourself — gently, and with so much grace.</span>
+                <span class="gallery__caption-tag">#infinite</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img5.jpeg" alt="foto 5" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">Golden light, soft world — and somehow, you are still the most radiant thing in it.</span>
+                <span class="gallery__caption-tag">#luminous</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery__card" data-reveal="fade-up">
+            <div class="gallery__card-inner">
+              <img class="gallery__photo" src="assets/images/img6.jpeg" alt="foto 6" loading="lazy" />
+              <div class="gallery__caption">
+                <span class="gallery__caption-text">You are the reason I believe some things are simply worth being devoted to.</span>
+                <span class="gallery__caption-tag">#devoted</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:clamp(40px,6vw,72px);">
+          <p class="t-quote" data-reveal="scale" style="max-width:600px;margin:0 auto;color:var(--clr-white-40);">
+            "Not just a photograph. The reason I take them."
+          </p>
+        </div>
+      </div>
+
+      <div class="orb-decoration orb-pink" style="width:600px;height:600px;bottom:-10%;right:-10%;opacity:0.35;"></div>
+    </section>
+
+    <!-- ─── LOVE LETTER ───────────────────────────────────── -->
+    <section class="love-letter" id="love-letter" data-scene="love-letter">
+      <div class="section-number" aria-hidden="true">03</div>
+      <div class="letter__spotlight" aria-hidden="true"></div>
+
+      <div class="love-letter__inner">
+        <header class="section-header">
+          <p class="t-label section-header__eyebrow" data-reveal="fade-up">
+            Written at 2am, meant for always
+          </p>
+          <div class="section-divider"></div>
+          <h2 class="t-section-title section-header__title" data-reveal="fade-up">
+            Things I carry<br /><em style="font-style:italic;color:var(--clr-pink-soft);">in silence</em>
+          </h2>
+        </header>
+
+        <div class="love-letter__paper glass-card">
+          <span class="letter__salutation">To you, always —</span>
+
+          <div class="letter__body">
+            <p>
+              Happy birthday, my love. 🤍 Hari ini bukan cuma tentang bertambahnya usia kamu, tapi juga tentang bersyukur karena dunia pernah menghadirkan seseorang sebaik kamu. Jujur, ketemu kamu adalah salah satu hal terbaik yang pernah terjadi di hidup aku. Kamu berhasil bikin hari-hari yang biasa aja jadi terasa jauh lebih berarti. Thank you for existing, because life feels so much better with you in it.
+            </p>
+
+            <p>
+              Terima kasih ya, udah jadi tempat paling nyaman buat aku pulang. Makasih karena selalu sabar, selalu dengerin cerita-cerita random aku, dan selalu ada bahkan di hari-hari saat aku lagi ga baik-baik aja. Kamu mungkin ga sadar, tapi kehadiran kamu selalu bikin aku ngerasa tenang. You make everything feel easier, and that's one of the many reasons why i love you so much.
+            </p>
+
+            <p>
+              Di umur kamu yang baru ini, aku ga cuma berharap semua impian kamu tercapai, tapi aku juga berharap kamu selalu punya alasan buat tersenyum. Semoga setiap usaha yang lagi kamu jalanin berakhir dengan hasil terbaik, setiap doa yang kamu simpan pelan-pelan dijawab, dan setiap langkah yang kamu ambil selalu mengarah ke hal-hal baik. Keep believing in yourself, because i'll always believe in you.
+            </p>
+
+            <p>
+              Kalau suatu hari nanti dunia terasa terlalu berat, please remember that you don't have to carry everything alone. Aku akan selalu ada buat nemenin kamu, dukung semua mimpi kamu, dan bangga sama setiap proses yang kamu lewatin. Aku ga janji semuanya bakal selalu mudah, tapi aku janji bakal terus milih kamu, hari ini, besok, dan seterusnya. I love you more than yesterday, and less than tomorrow. 🤍
+            </p>
+          </div>
+
+          <span class="letter__sign">— yours, completely.</span>
+        </div>
+      </div>
+
+      <div class="orb-decoration orb-violet" style="width:700px;height:700px;top:-20%;left:-15%;opacity:0.25;"></div>
+    </section>
+
+    <!-- ─── FINALE ────────────────────────────────────────── -->
+    <section class="finale" id="finale" data-scene="finale">
+      <div class="finale__bg-glow" aria-hidden="true"></div>
+
+      <div class="finale__inner">
+        <span class="finale__heart" aria-hidden="true">♡</span>
+        <h2 class="finale__quote t-hero glow-text">
+          Every timeline<br />leads me<br /><em>back to you.</em>
+        </h2>
+        <p class="finale__sub t-label" style="margin-top:40px;">
+          The end is just another beginning
+        </p>
+
+        <div style="margin-top:60px;">
+          <a href="#hero" class="btn btn-primary pulse-glow" data-magnetic>
+            Begin Again ♡
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer>
+    <p>made with devotion &amp; too many sleepless nights &nbsp;·&nbsp; Nabila. ♡</p>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════
+       SCRIPTS — VERSI GITHUB PAGES
+       CDN libs tetap dari internet, tapi file JS sendiri pakai path relative
+       ════════════════════════════════════════════════════════ -->
+
+  <!-- CDN Libraries (WAJIB tetap dari CDN, tidak bisa di-bundle) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Core -->
+  <script src="js/config.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/app-controller.js"></script>
+
+  <!-- Systems -->
+  <script src="js/performance.js"></script>
+  <script src="js/galaxy-background.js"></script>
+  <script src="js/three-background.js"></script>
+  <script src="js/preloader.js"></script>
+  <script src="js/audio-system.js"></script>
+
+  <!-- Engine -->
+  <script src="js/animation-engine.js"></script>
+  <script src="js/scene-manager.js"></script>
+  <script src="js/interaction-engine.js"></script>
+
+  <!-- Main -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
